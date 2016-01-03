@@ -1,0 +1,569 @@
+﻿@model The_Masquerade.Models.Views.CharactersModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+<div id="character">
+    <div class="character">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <div>
+                    <p class="bordo left"> </p>
+                    <h3>General</h3>
+                    <p class="bordo right"> </p>
+                </div>
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @{
+            TempData["Player_id"] = ViewBag.Player_id;
+            int MaxLength = 0;
+                }
+
+                <div class="block-left fifth">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Character.Story_id, "Story", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.Character.Story_id, (SelectList)(ViewBag.Story_id), "", htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Character.Story_id, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Character.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Character.Name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Character.Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Character.Clan, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.Character.Clan, (List<SelectListItem>)(ViewBag.Clans), "", htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Character.Clan, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Character.Generetion, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.Character.Generetion, (List<SelectListItem>)(ViewBag.Generations), "", htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Character.Generetion, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Character.Experience_Points, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Character.Experience_Points, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Character.Experience_Points, "", new { @class = "text-danger" })
+                            @Html.EditorFor(model => model.Character.EP_Available, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Character.EP_Available, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="block-right fifth">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Character.Alive, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.Character.Alive, new List<SelectListItem> {
+                    new SelectListItem { Text = "Alive", Value = "Alive" },
+                    new SelectListItem { Text = "Dead", Value = "Dead" }}
+                    , htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Character.Alive, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Character.Nature, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Character.Nature, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Character.Nature, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Character.Demeanon, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Character.Demeanon, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Character.Demeanon, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Character.Sire, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Character.Sire, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Character.Sire, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Character.Player, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Character.Player.Full_Name, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                            @Html.ValidationMessageFor(model => model.Character.Player.Full_Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="attributes specialization">
+                    <div></div>
+                    <div>
+                        <p class="bordo left"> </p>
+                        <h3>Attributes</h3>
+                        <p class="bordo right"> </p>
+                    </div>
+                    <div class="physical third">
+                        <h4>Physical</h4>
+                        @for (int j = 0; j < Model.Physical.Count; j++)
+                        {
+
+                            <div class="form-group @Model.Physical[j].Name">
+                                @Html.LabelFor(model => Model.Physical[j].Name, Model.Physical[j].Name,
+                        htmlAttributes: new { @class = "control-label col-md-2" })
+                                <input type="text" name="[@MaxLength].Specialization" id="[@MaxLength].Specialization" value="" />
+                                <fieldset id="[@MaxLength]">
+                                    <div>
+                                        @for (int i = 1; i <= Model.Physical[j].MaxValue; i++)
+                                        {
+                                            <input type="radio" class="@MaxLength" ondblclick="resetValue(@MaxLength)" onclick="javascript: setValue(@MaxLength, value)" value="@i.ToString()" />
+                                        }
+                                        <input type="hidden" name="[@MaxLength].Section" id="[@MaxLength].Section" value="Physical" />
+                                        <input type="hidden" name="[@MaxLength].Name" id="[@MaxLength].Name" value="@Model.Physical[j].Name" />
+                                        <input type="hidden" name="[@MaxLength].MaxValue" id="[@MaxLength].MaxValue" value="@Model.Physical[j].MaxValue" />
+                                        <input type="hidden" name="[@MaxLength].ActualValue" id="[@MaxLength].ActualValue" value="@Model.Physical[j].ActualValue" />
+                                        @{ MaxLength += 1; }
+                                    </div>
+                                </fieldset>
+                            </div>
+                        }
+                    </div>
+                    <div class="social third">
+                        <h4>Social</h4>
+                        @for (int j = 0; j < Model.Social.Count; j++)
+                        {
+
+                            <div class="form-group @Model.Social[j].Name">
+                                @Html.LabelFor(model => Model.Social[j].Name, Model.Social[j].Name,
+                        htmlAttributes: new { @class = "control-label col-md-2" })
+                                <input type="text" name="[@MaxLength].Specialization" id="[@MaxLength].Specialization" value="" />
+                                <fieldset id="[@MaxLength]">
+                                    <div>
+                                        @for (int i = 1; i <= Model.Social[j].MaxValue; i++)
+                                        {
+                                            <input type="radio" class="@MaxLength" ondblclick="resetValue(@MaxLength)" onclick="javascript: setValue(@MaxLength, value)" value="@i.ToString()" />
+                                        }
+                                        <input type="hidden" name="[@MaxLength].Section" id="[@MaxLength].Section" value="Social" />
+                                        <input type="hidden" name="[@MaxLength].Name" id="[@MaxLength].Name" value="@Model.Social[j].Name" />
+                                        <input type="hidden" name="[@MaxLength].MaxValue" id="[@MaxLength].MaxValue" value="@Model.Social[j].MaxValue" />
+                                        <input type="hidden" name="[@MaxLength].ActualValue" id="[@MaxLength].ActualValue" value="@Model.Social[j].ActualValue" />
+                                        @{ MaxLength += 1; }
+                                    </div>
+                                </fieldset>
+                            </div>
+                        }
+                    </div>
+                    <div class="mental third">
+                        <h4>Mental</h4>
+                        @for (int j = 0; j < Model.Mental.Count; j++)
+                        {
+
+                            <div class="form-group @Model.Mental[j].Name">
+                                @Html.LabelFor(model => Model.Mental[j].Name, Model.Mental[j].Name,
+                        htmlAttributes: new { @class = "control-label col-md-2" })
+                                <input type="text" name="[@MaxLength].Specialization" id="[@MaxLength].Specialization" value="" />
+                                <fieldset id="[@MaxLength]">
+                                    <div>
+                                        @for (int i = 1; i <= Model.Mental[j].MaxValue; i++)
+                                        {
+                                            <input type="radio" class="@MaxLength" ondblclick="resetValue(@MaxLength)" onclick="javascript: setValue(@MaxLength, value)" value="@i.ToString()" />
+                                        }
+                                        <input type="hidden" name="[@MaxLength].Section" id="[@MaxLength].Section" value="Mental" />
+                                        <input type="hidden" name="[@MaxLength].Name" id="[@MaxLength].Name" value="@Model.Mental[j].Name" />
+                                        <input type="hidden" name="[@MaxLength].MaxValue" id="[@MaxLength].MaxValue" value="@Model.Mental[j].MaxValue" />
+                                        <input type="hidden" name="[@MaxLength].ActualValue" id="[@MaxLength].ActualValue" value="@Model.Mental[j].ActualValue" />
+                                        @{ MaxLength += 1; }
+                                    </div>
+                                </fieldset>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                <div class="abilities specialization">
+                    <div>
+                        <p class="bordo left"> </p>
+                        <h3>Abilities</h3>
+                        <p class="bordo right"> </p>
+                    </div>
+                    <div class="talents third">
+                        <h4>Talents</h4>
+                        @for (int j = 0; j < Model.Talents.Count; j++)
+                        {
+
+                            <div class="form-group @Model.Talents[j].Name">
+                                @Html.LabelFor(model => Model.Talents[j].Name, Model.Talents[j].Name,
+                        htmlAttributes: new { @class = "control-label col-md-2" })
+                                <input type="text" name="[@MaxLength].Specialization" id="[@MaxLength].Specialization" value="" />
+                                <fieldset id="[@MaxLength]">
+                                    <div>
+                                        @for (int i = 1; i <= Model.Talents[j].MaxValue; i++)
+                                        {
+                                            <input type="radio" class="@MaxLength" ondblclick="resetValue(@MaxLength)" onclick="javascript: setValue(@MaxLength, value)" value="@i.ToString()" />
+                                        }
+                                        <input type="hidden" name="[@MaxLength].Section" id="[@MaxLength].Section" value="Talents" />
+                                        <input type="hidden" name="[@MaxLength].Name" id="[@MaxLength].Name" value="@Model.Talents[j].Name" />
+                                        <input type="hidden" name="[@MaxLength].MaxValue" id="[@MaxLength].MaxValue" value="@Model.Talents[j].MaxValue" />
+                                        <input type="hidden" name="[@MaxLength].ActualValue" id="[@MaxLength].ActualValue" value="@Model.Talents[j].ActualValue" />
+                                        @{ MaxLength += 1; }
+                                    </div>
+                                </fieldset>
+                            </div>
+                        }
+                    </div>
+                    <div class="skills third">
+                        <h4>Skills</h4>
+                        @for (int j = 0; j < Model.Skills.Count; j++)
+                        {
+
+                            <div class="form-group @Model.Skills[j].Name">
+                                @Html.LabelFor(model => Model.Skills[j].Name, Model.Skills[j].Name,
+                        htmlAttributes: new { @class = "control-label col-md-2" })
+                                <input type="text" name="[@MaxLength].Specialization" id="[@MaxLength].Specialization" value="" />
+                                <fieldset id="[@MaxLength]">
+                                    <div>
+                                        @for (int i = 1; i <= Model.Skills[j].MaxValue; i++)
+                                        {
+                                            <input type="radio" class="@MaxLength" ondblclick="resetValue(@MaxLength)" onclick="javascript: setValue(@MaxLength, value)" value="@i.ToString()" />
+                                        }
+                                        <input type="hidden" name="[@MaxLength].Section" id="[@MaxLength].Section" value="Skills" />
+                                        <input type="hidden" name="[@MaxLength].Name" id="[@MaxLength].Name" value="@Model.Skills[j].Name" />
+                                        <input type="hidden" name="[@MaxLength].MaxValue" id="[@MaxLength].MaxValue" value="@Model.Skills[j].MaxValue" />
+                                        <input type="hidden" name="[@MaxLength].ActualValue" id="[@MaxLength].ActualValue" value="@Model.Skills[j].ActualValue" />
+                                        @{ MaxLength += 1; }
+                                    </div>
+                                </fieldset>
+                            </div>
+                        }
+                    </div>
+                    <div class="knowledges third">
+                        <h4>Knowledges</h4>
+                        @for (int j = 0; j < Model.Knowledges.Count; j++)
+                        {
+
+                            <div class="form-group @Model.Knowledges[j].Name">
+                                @Html.LabelFor(model => Model.Knowledges[j].Name, Model.Knowledges[j].Name,
+                        htmlAttributes: new { @class = "control-label col-md-2" })
+                                <input type="text" name="[@MaxLength].Specialization" id="[@MaxLength].Specialization" value="" />
+                                <fieldset id="[@MaxLength]">
+                                    <div>
+                                        @for (int i = 1; i <= Model.Knowledges[j].MaxValue; i++)
+                                        {
+                                            <input type="radio" class="@MaxLength" ondblclick="resetValue(@MaxLength)" onclick="javascript: setValue(@MaxLength, value)" value="@i.ToString()" />
+                                        }
+                                        <input type="hidden" name="[@MaxLength].Section" id="[@MaxLength].Section" value="Knowledges" />
+                                        <input type="hidden" name="[@MaxLength].Name" id="[@MaxLength].Name" value="@Model.Knowledges[j].Name" />
+                                        <input type="hidden" name="[@MaxLength].MaxValue" id="[@MaxLength].MaxValue" value="@Model.Knowledges[j].MaxValue" />
+                                        <input type="hidden" name="[@MaxLength].ActualValue" id="[@MaxLength].ActualValue" value="@Model.Knowledges[j].ActualValue" />
+                                        @{ MaxLength += 1; }
+                                    </div>
+                                </fieldset>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                <div class="advantages specialization">
+                    <div>
+                        <p class="bordo left"> </p>
+                        <h3>Advantages</h3>
+                        <p class="bordo right"> </p>
+                    </div>
+                    <div class="disciplines third">
+                        <h4>Disciplines</h4>
+                        <div id="Disciplines"></div>
+                        <div>
+                            <input type="button" id="AddDisciplines" value="Add disciplines" onclick="javascript: AddBlock('Disciplines')" class="btn btn-default" />
+                        </div>
+                    </div>
+                    <div class="backgrounds third">
+                        <h4>Backgrounds</h4>
+                        <div id="Backgrounds"></div>
+                        <div>
+                            <input type="button" id="AddBackgrounds" value="Add backgrounds" onclick="javascript: AddBlock('Backgrounds')" class="btn btn-default" />
+                        </div>
+                    </div>
+                    <div class="virtues third">
+                        <h4>Virtues</h4>
+
+                        <div id="Coscience" class="form-group">
+                            <select class="form-control virtues" id="[@MaxLength].Name" name="[@MaxLength].Name">
+                                <option value="Coscience">Coscience</option>
+                                <option value="Conviction">Conviction</option>
+                            </select>
+                            <div class="virtues-input">
+                                <input type="text" name="[@MaxLength].Specialization" id="[@MaxLength].Specialization" value="" class="virtues" />
+                            </div>
+                            <fieldset id="@MaxLength" )">
+                                <div>
+                                    @for (int i = 1; i <= 5; i++)
+                                    {
+                                        <input type="radio" class="@MaxLength" ondblclick="resetValue(@MaxLength)" onclick="javascript: setValue(@MaxLength, value)" value="@i.ToString()" />
+                                    }
+                                    <input type="hidden" id="[@MaxLength].Section" name="[@MaxLength].Section" value="Virtues" />
+                                    <input type="hidden" id="[@MaxLength].MaxValue" name="[@MaxLength].MaxValue" value="5" />
+                                    <input type="hidden" id="[@MaxLength].ActualValue" name="[@MaxLength].ActualValue" value="0" />
+                                </div>
+                                @{ MaxLength += 1; }
+                            </fieldset>
+                        </div>
+                        <div id="SelfControl" class="form-group">
+                            <select class="form-control virtues" id="[@MaxLength].Name" name="[@MaxLength].Name">
+                                <option value="Self-Control">Self-Control</option>
+                                <option value="Instint">Instint</option>
+                            </select>
+                            <div class="virtues-input">
+                                <input type="text" name="[@MaxLength].Specialization" id="[@MaxLength].Specialization" value="" class="virtues" />
+                            </div>
+                            <fieldset id="@MaxLength" )">
+                                <div>
+                                    @for (int i = 1; i <= 5; i++)
+                                    {
+                                        <input type="radio" class="@MaxLength" ondblclick="resetValue(@MaxLength)" onclick="javascript: setValue(@MaxLength, value)" value="@i.ToString()" />
+                                    }
+                                    <input type="hidden" id="[@MaxLength].Section" name="[@MaxLength].Section" value="Virtues" />
+                                    <input type="hidden" id="[@MaxLength].MaxValue" name="[@MaxLength].MaxValue" value="5" />
+                                    <input type="hidden" id="[@MaxLength].ActualValue" name="[@MaxLength].ActualValue" value="0" />
+                                </div>
+                                @{ MaxLength += 1; }
+                            </fieldset>
+                        </div>
+                        <div id="Courage" class="form-group specialization">
+                            <label class="control-label col-md-2" id="[@MaxLength].Name">Courage</label>
+                            <div class="virtues-input">
+                                <input type="text" name="[@MaxLength].Specialization" id="[@MaxLength].Specialization" value="" class="virtues" />
+                            </div>
+                            <fieldset id="@MaxLength" )">
+                                <div>
+                                    @for (int i = 1; i <= 5; i++)
+                                    {
+                                        <input type="radio" class="@MaxLength" ondblclick="resetValue(@MaxLength)" onclick="javascript: setValue(@MaxLength, value)" value="@i.ToString()" />
+                                    }
+                                    <input type="hidden" id="[@MaxLength].Name" name="[@MaxLength].Name" value="Courage" />
+                                    <input type="hidden" id="[@MaxLength].Section" name="[@MaxLength].Section" value="Virtues" />
+                                    <input type="hidden" id="[@MaxLength].MaxValue" name="[@MaxLength].MaxValue" value="5" />
+                                    <input type="hidden" id="[@MaxLength].ActualValue" name="[@MaxLength].ActualValue" value="0" />
+                                </div>
+                                @{ MaxLength += 1; }
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="extra">
+                    <div>
+                        <p class="bordo left"> </p>
+                        <h3>Extra</h3>
+                        <p class="bordo right"> </p>
+                    </div>
+                    <div class="extra_left third">
+                        <h4>Merits & Flaws</h4>
+                        <div class="merits">
+                            <h5>Merits</h5>
+                            <div id="Merits"></div>
+                            <div>
+                                <input type="button" id="AddMerits" value="Add merits" onclick="javascript: AddBlockMF('Merits')" class="btn btn-default" />
+                            </div>
+                        </div>
+                        <div class="flaws">
+                            <h5>Flaws</h5>
+                            <div id="Flaws"></div>
+                            <div>
+                                <input type="button" id="AddFlaws" value="Add flaws" onclick="javascript: AddBlockMF('Flaws')" class="btn btn-default" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="extra_center third">
+                        <div class="path">
+                            <h4>Humanity/Path</h4>
+                            <div id="Path">
+                                <div class="form-group">
+                                    <select name="[@MaxLength].Specialization" id="[@MaxLength].Specialization" class="form-control">
+                                        <option value="Blood">Blood</option>
+                                        <option value="Bones">Bones</option>
+                                        <option value="Caine">Caine</option>
+                                        <option value="Cathari">Cathari</option>
+                                        <option value="Death and the Soul">Death and the Soul</option>
+                                        <option value="Feral Heart">Feral Heart</option>
+                                        <option value="Harmony">Harmony</option>
+                                        <option value="Honorable Accord">Honorable Accord</option>
+                                        <option selected value="Humanity">Humanity</option>
+                                        <option value="Lilith">Lilith</option>
+                                        <option value="Metamorphosis">Metamorphosis</option>
+                                        <option value="Night">Night</option>
+                                        <option value="Paradox">Paradox</option>
+                                        <option value="Power and the Inner Voice">Power and the Inner Voice</option>
+                                        <option value="Typhon">Typhon</option>
+                                    </select>
+                                    @for (int i = 1; i <= 10; i++)
+                                    {
+                                        <input type="radio" class="@MaxLength" ondblclick="resetValue(@MaxLength)" onclick="javascript: setValue(@MaxLength, value)" value="@i.ToString()" />
+                                    }
+                                    <input type="hidden" id="[@MaxLength].Name" name="[@MaxLength].Name" value="Path" />
+                                    <input type="hidden" id="[@MaxLength].Section" name="[@MaxLength].Section" value="Extra" />
+                                    <input type="hidden" id="[@MaxLength].MaxValue" name="[@MaxLength].MaxValue" value="10" />
+                                    <input type="hidden" id="[@MaxLength].ActualValue" name="[@MaxLength].ActualValue" value="0" />
+                                    @{ MaxLength += 1; }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="willpower">
+                            <h4>Will Power</h4>
+                            <div id="WillPower">
+                                <div>
+                                    @for (int i = 1; i <= 10; i++)
+                                    {
+                                        <input type="radio" class="@MaxLength" ondblclick="resetValue(@MaxLength)" onclick="javascript: setValueWP(@MaxLength, value)" value="@i.ToString()" />
+                                    }
+                                    <input type="hidden" id="[@MaxLength].Name" name="[@MaxLength].Name" value="WillPower" />
+                                    <input type="hidden" id="[@MaxLength].Section" name="[@MaxLength].Section" value="Extra" />
+                                    <input type="hidden" id="[@MaxLength].MaxValue" name="[@MaxLength].MaxValue" value="10" />
+                                    <input type="hidden" id="[@MaxLength].ActualValue" name="[@MaxLength].ActualValue" value="0" />
+                                    @{ MaxLength += 1; }
+                                </div>
+                                <div>
+                                    @for (int i = 1; i <= 10; i++)
+                                    {
+                                        <input type="checkbox" class="@MaxLength" ondblclick="resetValue(@MaxLength)" onclick="javascript: setValue(@MaxLength, value)" value="@i.ToString()" />
+                                    }
+                                    <input type="hidden" id="[@MaxLength].Name" name="[@MaxLength].Name" value="WillPowerTemp" />
+                                    <input type="hidden" id="[@MaxLength].Section" name="[@MaxLength].Section" value="Extra" />
+                                    <input type="hidden" id="[@MaxLength].MaxValue" name="[@MaxLength].MaxValue" value="10" />
+                                    <input type="hidden" id="[@MaxLength].ActualValue" name="[@MaxLength].ActualValue" value="0" />
+                                    @{ MaxLength += 1; }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bloodpool">
+                            <h4>Blood Pool</h4>
+                            <div id="BloodPool">
+                                <div>
+                                    @for (int i = 1; i <= 10; i++)
+                                    {
+                                        <input type="checkbox" class="@MaxLength" ondblclick="resetValue(@MaxLength)" onclick="javascript: setValue(@MaxLength, value)" value="@i.ToString()" />
+                                    }
+                                </div>
+                                <div>
+                                    @for (int i = 11; i <= 20; i++)
+                                    {
+                                        <input type="checkbox" class="@MaxLength" onclick="javascript: setValue(@MaxLength, value)" value="@i.ToString()" />
+                                    }
+                                </div>
+                                <input type="hidden" id="[@MaxLength].Name" name="[@MaxLength].Name" value="BloodPool" />
+                                <input type="hidden" id="[@MaxLength].Section" name="[@MaxLength].Section" value="Extra" />
+                                <input type="hidden" id="[@MaxLength].MaxValue" name="[@MaxLength].MaxValue" value="20" />
+                                <input type="hidden" id="[@MaxLength].ActualValue" name="[@MaxLength].ActualValue" value="0" />
+                                @{ MaxLength += 1; }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="extra_right third">
+                        <div class="health">
+                            <h4>Health</h4>
+                            <div id="Health">
+                                <table class="health">
+                                    <tr>
+                                        <td class="first-col">Brused</td>
+                                        <td class="second-col"></td>
+                                        <td><input type="checkbox" class="@MaxLength" ondblclick="resetValue(@MaxLength)" onclick="javascript: setValue(@MaxLength, value)" value="2" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="first-col">Hurt</td>
+                                        <td class="second-col">-1</td>
+                                        <td><input type="checkbox" class="@MaxLength" ondblclick="resetValue(@MaxLength)" onclick="javascript: setValue(@MaxLength, value)" value="2" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="first-col">Injured</td>
+                                        <td class="second-col">-1</td>
+                                        <td><input type="checkbox" class="@MaxLength" ondblclick="resetValue(@MaxLength)" onclick="javascript: setValue(@MaxLength, value)" value="3" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="first-col">Wounded</td>
+                                        <td class="second-col">-2</td>
+                                        <td><input type="checkbox" class="@MaxLength" ondblclick="resetValue(@MaxLength)" onclick="javascript: setValue(@MaxLength, value)" value="4" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="first-col">Mauled</td>
+                                        <td class="second-col">-2</td>
+                                        <td><input type="checkbox" class="@MaxLength" ondblclick="resetValue(@MaxLength)" onclick="javascript: setValue(@MaxLength, value)" value="5" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="first-col">Crippled</td>
+                                        <td class="second-col">-5</td>
+                                        <td><input type="checkbox" class="@MaxLength" ondblclick="resetValue(@MaxLength)" onclick="javascript: setValue(@MaxLength, value)" value="6" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="first-col">Incapacitated</td>
+                                        <td class="second-col"></td>
+                                        <td><input type="checkbox" class="@MaxLength" ondblclick="resetValue(@MaxLength)" onclick="javascript: setValue(@MaxLength, value)" value="7" /></td>
+                                    </tr>
+                                </table>
+                                <input type="hidden" id="[@MaxLength].Name" name="[@MaxLength].Name" value="Health" />
+                                <input type="hidden" id="[@MaxLength].Section" name="[@MaxLength].Section" value="Extra" />
+                                <input type="hidden" id="[@MaxLength].MaxValue" name="[@MaxLength].MaxValue" value="7" />
+                                <input type="hidden" id="[@MaxLength].ActualValue" name="[@MaxLength].ActualValue" value="0" />
+                                @{ MaxLength += 1; }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="story">
+                    <div>
+                        <p class="bordo left"> </p>
+                        <h3>Story</h3>
+                        <p class="bordo right"> </p>
+                    </div>
+                    <div>
+                        @Html.TextAreaFor(model => model.Character.Personal_Story, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Character.Personal_Story, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="clearer"> </div>
+                <div class="form-group">
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Create" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" id="maxLength" value="@MaxLength" />
+        }
+    </div>
+    <div>
+        @if (Request.IsAuthenticated && User.IsInRole("Narrator"))
+        {
+            @Html.ActionLink("Back to List", "Index", "Characters", new { id = ViewBag.Player_id }, null);
+        }
+        @if (Request.IsAuthenticated && User.IsInRole("Player"))
+        {
+            @Html.ActionLink("Back to Index", "Player", "Administration");
+        }
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        //$("#character").slideDown(3000);
+
+        scrollResize();
+    </script>
+}

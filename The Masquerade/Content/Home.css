@@ -1,0 +1,118 @@
+﻿hr.style-eight {
+    height: 30px;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px 0 0 0;
+    border-radius: 20px;
+    width: 70%;
+}
+
+@media (min-width: 769px) {
+    #intro-conteiner {
+        text-align: center;
+        margin: 0;
+        background-color: white;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 5px 5px 5px #dedede, -5px -5px 5px #dedede, 5px -5px 5px #dedede, -5px 5px 5px #dedede;
+        width: 100% !important;
+    }
+}
+
+@media (max-width: 768px) {
+    hr.style-eight {
+        width: 90%;
+    }
+
+    /*#first-hr {
+        display: none;
+    }*/
+
+    /*#intro {
+        display: none;
+    }*/
+}
+
+hr.style-eight:after {
+    display: block;
+    content: "";
+    height: 30px;
+    margin-top: -31px;
+    border-style: solid;
+    border-color: black;
+    border-width: 0 0 1px 0;
+    border-radius: 20px;
+}
+
+@media (min-width: 1170px) {
+    .home-header-left {
+        margin-left: 20%;
+    }
+
+    .home-header-right {
+        margin-left: 26%;
+    }
+}
+
+section > div > h1 {
+    /*color: #9E0B15;*/
+    font-style: italic;
+    /* margin-top: 20px; */
+    padding-top: 15px;
+}
+
+section > article > div {
+    text-align: center;
+}
+
+section > article {
+    padding-top: 20px;
+}
+
+@media (max-width: 960px) {
+    section > article > div > img {
+        width: 100%;
+    }
+
+    #intro {
+        width: 100%;
+    }
+
+    section > div > h2 {
+        width: 95%;
+    }
+}
+
+@media (min-width: 961px) {
+    section > div > h2 {
+        width: 70%;
+    }
+
+    #intro {
+        width: 80%;
+    }
+
+    section > article > div > img {
+        width: 80%;
+    }
+}
+
+section {
+    text-align: center;
+}
+
+
+@media (max-width: 960px) {
+    #nuvola {
+        display: none;
+    }
+}
+
+#nuvola {
+    width: 100%;
+}
+
+/*body {
+    background-image: none !important;
+    background-color: transparent;
+}*/

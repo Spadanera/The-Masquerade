@@ -1,0 +1,135 @@
+﻿@model The_Masquerade.Models.Views.ChronicleModel
+
+@{
+    ViewBag.Title = "Chronicles";
+}
+
+@*<h2>@Html.ActionLink("Index", "Narrator", "Administration") > @ViewBag.Story</h2>*@
+
+<h2>@ViewBag.Story's Chronicles</h2>
+<p>
+    @Html.ActionLink("Create New", "Create", new { id = ViewBag.Story_id })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Description
+        </th>
+        <th>
+            Status
+        </th>
+        <th>
+            Actions
+        </th>
+    </tr>
+
+@foreach (var item in Model.Chronicles) {
+    <tr>
+        <td>
+            @Html.ActionLink((@Html.DisplayFor(modelItem => item.Name)).ToString(), "Index", "Sessions", new { id = item.System_id }, null)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.System_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.System_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.System_id })
+        </td>
+    </tr>
+}
+</table>
+
+<h2 class="second">Characters</h2>
+<table class="table">
+    <tr>
+        <th>
+            Character Name
+        </th>
+        <th>
+            User Name
+        </th>
+        <th>
+            Clan
+        </th>
+        <th class="nophone">
+            Experience Points
+        </th>
+        <th>Actions</th>
+    </tr>
+
+    @foreach (var item in Model.PlayersCharacters)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Player.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Clan)
+            </td>
+            <td class="nophone">
+                @Html.DisplayFor(modelItem => item.Experience_Points)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", "Characters", new { id = item.System_id }, null) |
+                @Html.ActionLink("Details", "Details", "Characters", new { id = item.System_id }, null) |
+                @Html.ActionLink("History", "Hystory", "Characters", new { id = item.System_id }, null)
+            </td>
+        </tr>
+    }
+</table>
+
+<h2 class="second">NPC</h2>
+<table class="table">
+    <tr>
+        <th>
+            Character Name
+        </th>
+        <th>
+            Group
+        </th>
+        <th>
+            Clan
+        </th>
+        <th class="nophone">
+            Experience Points
+        </th>
+        <th>Actions</th>
+    </tr>
+
+    @foreach (var item in Model.NpcCharacters)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Player.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Clan)
+            </td>
+            <td class="nophone">
+                @Html.DisplayFor(modelItem => item.Experience_Points)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", "Characters",new { id = item.System_id }, null) |
+                @Html.ActionLink("Details", "Details", "Characters", new { id = item.System_id }, null)
+            </td>
+        </tr>
+    }
+</table>
+
+<p>
+    @Html.ActionLink("Back to Index", "Narrator", "Administration")
+    @*@Html.ActionLink("Experience Points", "Experience_Points", "Characters", new { story_id = ViewBag.Story_id }, null)*@
+</p>

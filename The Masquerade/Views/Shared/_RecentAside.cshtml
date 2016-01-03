@@ -1,0 +1,32 @@
+﻿<script>
+    function showRecent() {
+        $(".recent-aside").toggle(500);
+    }
+</script>
+
+<div class="content-aside">
+    <div class="header-aside" onclick="showRecent()">
+        Recents
+    </div>
+    <div class="recent-aside">
+        @{
+            var RecentList = (Queue<The_Masquerade.Models.Character>)(System.Web.HttpContext.Current.Session["RecentItems"]);
+
+            if (RecentList != null && RecentList.Count > 0)
+            {
+                foreach (var recent in RecentList)
+                {
+                    <div class="action-aside">
+                        @Html.ActionLink(recent.Name, "Edit", "Characters", new { id = recent.System_id }, null)
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="action-aside">
+                    No recent item
+                </div>
+            }
+        }
+    </div>
+</div>

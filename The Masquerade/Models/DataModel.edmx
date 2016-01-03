@@ -1,0 +1,1131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Character_Details">
+          <Key>
+            <PropertyRef Name="System_id" />
+          </Key>
+          <Property Name="System_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Character_id" Type="int" Nullable="false" />
+          <Property Name="Section" Type="nvarchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Specialization" Type="nvarchar" MaxLength="50" />
+          <Property Name="MaxValue" Type="int" />
+          <Property Name="ActualValue" Type="int" />
+        </EntityType>
+        <EntityType Name="Characters">
+          <Key>
+            <PropertyRef Name="System_id" />
+          </Key>
+          <Property Name="System_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Parent_id" Type="int" Nullable="false" />
+          <Property Name="Story_id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Alive" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Clan" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Personal_Story" Type="nvarchar(max)" />
+          <Property Name="Experience_Points" Type="int" Nullable="false" />
+          <Property Name="Nature" Type="nvarchar" MaxLength="50" />
+          <Property Name="Demeanon" Type="nvarchar" MaxLength="50" />
+          <Property Name="Concept" Type="nvarchar" MaxLength="50" />
+          <Property Name="Generetion" Type="nvarchar" MaxLength="10" />
+          <Property Name="Sire" Type="nvarchar" MaxLength="50" />
+		  <Property Name="EP_Available" Type="int" />
+        </EntityType>
+        <EntityType Name="Chronicles">
+          <Key>
+            <PropertyRef Name="System_id" />
+          </Key>
+          <Property Name="System_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Story_id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_9C444E_TheMasquerade.dbo.Experience_Points' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Experience_Points">
+          <Key>
+            <PropertyRef Name="Story_id" />
+            <PropertyRef Name="Character_id" />
+            <PropertyRef Name="Experience_Point" />
+          </Key>
+          <Property Name="Story_id" Type="int" Nullable="false" />
+          <Property Name="Character_id" Type="int" Nullable="false" />
+          <Property Name="Experience_Point" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Player_In_Story">
+          <Key>
+            <PropertyRef Name="Player_id" />
+            <PropertyRef Name="Story_id" />
+          </Key>
+          <Property Name="Player_id" Type="int" Nullable="false" />
+          <Property Name="Story_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Players">
+          <Key>
+            <PropertyRef Name="System_Id" />
+          </Key>
+          <Property Name="System_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Narrator_id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Full_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="eMail" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Type" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Session_Details">
+          <Key>
+            <PropertyRef Name="System_id" />
+          </Key>
+          <Property Name="System_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Character_id" Type="int" Nullable="false" />
+          <Property Name="Session_id" Type="int" Nullable="false" />
+          <Property Name="Experience_Points" Type="int" Nullable="false" />
+          <Property Name="Closing_Situation" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Sessions">
+          <Key>
+            <PropertyRef Name="System_id" />
+          </Key>
+          <Property Name="System_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Chronicle_id" Type="int" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="Notes" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Extra_Notes" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Session_Player" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Stories">
+          <Key>
+            <PropertyRef Name="System_id" />
+          </Key>
+          <Property Name="System_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Narrator_id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="250" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Character_Details_ToCharacter">
+          <End Role="Characters" Type="Self.Characters" Multiplicity="1" />
+          <End Role="Character_Details" Type="Self.Character_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Characters">
+              <PropertyRef Name="System_id" />
+            </Principal>
+            <Dependent Role="Character_Details">
+              <PropertyRef Name="Character_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Characters_ToPlayers">
+          <End Role="Players" Type="Self.Players" Multiplicity="1" />
+          <End Role="Characters" Type="Self.Characters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Players">
+              <PropertyRef Name="System_Id" />
+            </Principal>
+            <Dependent Role="Characters">
+              <PropertyRef Name="Parent_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Chronicles_ToStories">
+          <End Role="Stories" Type="Self.Stories" Multiplicity="1" />
+          <End Role="Chronicles" Type="Self.Chronicles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stories">
+              <PropertyRef Name="System_id" />
+            </Principal>
+            <Dependent Role="Chronicles">
+              <PropertyRef Name="Story_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Experience_Points_ToCharacters">
+          <End Role="Characters" Type="Self.Characters" Multiplicity="1" />
+          <End Role="Experience_Points" Type="Self.Experience_Points" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Characters">
+              <PropertyRef Name="System_id" />
+            </Principal>
+            <Dependent Role="Experience_Points">
+              <PropertyRef Name="Character_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Experience_Points_ToSessions">
+          <End Role="Stories" Type="Self.Stories" Multiplicity="1" />
+          <End Role="Experience_Points" Type="Self.Experience_Points" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stories">
+              <PropertyRef Name="System_id" />
+            </Principal>
+            <Dependent Role="Experience_Points">
+              <PropertyRef Name="Story_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Player_In_Story_ToPlayers">
+          <End Role="Players" Type="Self.Players" Multiplicity="1" />
+          <End Role="Player_In_Story" Type="Self.Player_In_Story" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Players">
+              <PropertyRef Name="System_Id" />
+            </Principal>
+            <Dependent Role="Player_In_Story">
+              <PropertyRef Name="Player_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Player_In_Story_ToStories">
+          <End Role="Stories" Type="Self.Stories" Multiplicity="1" />
+          <End Role="Player_In_Story" Type="Self.Player_In_Story" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stories">
+              <PropertyRef Name="System_id" />
+            </Principal>
+            <Dependent Role="Player_In_Story">
+              <PropertyRef Name="Story_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Players_ToUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="Players" Type="Self.Players" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Players">
+              <PropertyRef Name="Narrator_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Session_Details_ToCharacter">
+          <End Role="Characters" Type="Self.Characters" Multiplicity="1" />
+          <End Role="Session_Details" Type="Self.Session_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Characters">
+              <PropertyRef Name="System_id" />
+            </Principal>
+            <Dependent Role="Session_Details">
+              <PropertyRef Name="Character_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Session_Details_ToSessions">
+          <End Role="Sessions" Type="Self.Sessions" Multiplicity="1" />
+          <End Role="Session_Details" Type="Self.Session_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sessions">
+              <PropertyRef Name="System_id" />
+            </Principal>
+            <Dependent Role="Session_Details">
+              <PropertyRef Name="Session_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sessions_ToChronicle">
+          <End Role="Chronicles" Type="Self.Chronicles" Multiplicity="1" />
+          <End Role="Sessions" Type="Self.Sessions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Chronicles">
+              <PropertyRef Name="System_id" />
+            </Principal>
+            <Dependent Role="Sessions">
+              <PropertyRef Name="Chronicle_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sessions_ToPlayer">
+          <End Role="Players" Type="Self.Players" Multiplicity="1" />
+          <End Role="Sessions" Type="Self.Sessions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Players">
+              <PropertyRef Name="System_Id" />
+            </Principal>
+            <Dependent Role="Sessions">
+              <PropertyRef Name="Session_Player" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stories_ToPlayers">
+          <End Role="Stories" Type="Self.Stories" Multiplicity="1" />
+          <End Role="Characters" Type="Self.Characters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stories">
+              <PropertyRef Name="System_id" />
+            </Principal>
+            <Dependent Role="Characters">
+              <PropertyRef Name="Story_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stories_ToUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="Stories" Type="Self.Stories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Stories">
+              <PropertyRef Name="Narrator_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Character_Details" EntityType="Self.Character_Details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Characters" EntityType="Self.Characters" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Chronicles" EntityType="Self.Chronicles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Player_In_Story" EntityType="Self.Player_In_Story" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Players" EntityType="Self.Players" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Session_Details" EntityType="Self.Session_Details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sessions" EntityType="Self.Sessions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stories" EntityType="Self.Stories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Experience_Points" EntityType="Self.Experience_Points" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Experience_Points].[Story_id] AS [Story_id], 
+    [Experience_Points].[Character_id] AS [Character_id], 
+    [Experience_Points].[Experience_Point] AS [Experience_Point]
+    FROM [dbo].[Experience_Points] AS [Experience_Points]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Character_Details_ToCharacter" Association="Self.FK_Character_Details_ToCharacter">
+            <End Role="Characters" EntitySet="Characters" />
+            <End Role="Character_Details" EntitySet="Character_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Characters_ToPlayers" Association="Self.FK_Characters_ToPlayers">
+            <End Role="Players" EntitySet="Players" />
+            <End Role="Characters" EntitySet="Characters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Chronicles_ToStories" Association="Self.FK_Chronicles_ToStories">
+            <End Role="Stories" EntitySet="Stories" />
+            <End Role="Chronicles" EntitySet="Chronicles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Experience_Points_ToCharacters" Association="Self.FK_Experience_Points_ToCharacters">
+            <End Role="Characters" EntitySet="Characters" />
+            <End Role="Experience_Points" EntitySet="Experience_Points" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Experience_Points_ToSessions" Association="Self.FK_Experience_Points_ToSessions">
+            <End Role="Stories" EntitySet="Stories" />
+            <End Role="Experience_Points" EntitySet="Experience_Points" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Player_In_Story_ToPlayers" Association="Self.FK_Player_In_Story_ToPlayers">
+            <End Role="Players" EntitySet="Players" />
+            <End Role="Player_In_Story" EntitySet="Player_In_Story" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Player_In_Story_ToStories" Association="Self.FK_Player_In_Story_ToStories">
+            <End Role="Stories" EntitySet="Stories" />
+            <End Role="Player_In_Story" EntitySet="Player_In_Story" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Players_ToUsers" Association="Self.FK_Players_ToUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Players" EntitySet="Players" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Session_Details_ToCharacter" Association="Self.FK_Session_Details_ToCharacter">
+            <End Role="Characters" EntitySet="Characters" />
+            <End Role="Session_Details" EntitySet="Session_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Session_Details_ToSessions" Association="Self.FK_Session_Details_ToSessions">
+            <End Role="Sessions" EntitySet="Sessions" />
+            <End Role="Session_Details" EntitySet="Session_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sessions_ToChronicle" Association="Self.FK_Sessions_ToChronicle">
+            <End Role="Chronicles" EntitySet="Chronicles" />
+            <End Role="Sessions" EntitySet="Sessions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sessions_ToPlayer" Association="Self.FK_Sessions_ToPlayer">
+            <End Role="Players" EntitySet="Players" />
+            <End Role="Sessions" EntitySet="Sessions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stories_ToPlayers" Association="Self.FK_Stories_ToPlayers">
+            <End Role="Stories" EntitySet="Stories" />
+            <End Role="Characters" EntitySet="Characters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stories_ToUsers" Association="Self.FK_Stories_ToUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Stories" EntitySet="Stories" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="Players" Relationship="Self.FK_Players_ToUsers" FromRole="AspNetUsers" ToRole="Players" />
+          <NavigationProperty Name="Stories" Relationship="Self.FK_Stories_ToUsers" FromRole="AspNetUsers" ToRole="Stories" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+        </EntityType>
+        <EntityType Name="Character">
+          <Key>
+            <PropertyRef Name="System_id" />
+          </Key>
+          <Property Name="System_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Parent_id" Type="Int32" Nullable="false" />
+          <Property Name="Story_id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Alive" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Clan" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="Personal_Story" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Experience_Points" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Player" Relationship="Self.FK_Characters_ToPlayers" FromRole="Characters" ToRole="Players" />
+          <NavigationProperty Name="Experience_PointsList" Relationship="Self.FK_Experience_Points_ToCharacters" FromRole="Characters" ToRole="Experience_Points" />
+          <NavigationProperty Name="Session_Details" Relationship="Self.FK_Session_Details_ToCharacter" FromRole="Characters" ToRole="Session_Details" />
+          <NavigationProperty Name="Story" Relationship="Self.FK_Stories_ToPlayers" FromRole="Characters" ToRole="Stories" />
+          <Property Name="Nature" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Demeanon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Concept" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Generetion" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Sire" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+		  <Property Name="EP_Available" Type="Int32" />
+          <NavigationProperty Name="Character_Details" Relationship="Model.FK_Character_Details_ToCharacter" FromRole="Character" ToRole="Character_Details" />
+        </EntityType>
+        <EntityType Name="Chronicle">
+          <Key>
+            <PropertyRef Name="System_id" />
+          </Key>
+          <Property Name="System_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Story_id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Story" Relationship="Self.FK_Chronicles_ToStories" FromRole="Chronicles" ToRole="Stories" />
+          <NavigationProperty Name="Sessions" Relationship="Self.FK_Sessions_ToChronicle" FromRole="Chronicles" ToRole="Sessions" />
+        </EntityType>
+        <EntityType Name="Player">
+          <Key>
+            <PropertyRef Name="System_Id" />
+          </Key>
+          <Property Name="System_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Narrator_id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Full_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="eMail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_Players_ToUsers" FromRole="Players" ToRole="AspNetUsers" />
+          <NavigationProperty Name="Characters" Relationship="Self.FK_Characters_ToPlayers" FromRole="Players" ToRole="Characters" />
+          <NavigationProperty Name="Stories" Relationship="Self.Player_In_Story" FromRole="Players" ToRole="Stories" />
+          <NavigationProperty Name="Sessions" Relationship="Model.FK_Sessions_ToPlayer" FromRole="Player" ToRole="Session" />
+        </EntityType>
+        <EntityType Name="Session_Details">
+          <Key>
+            <PropertyRef Name="System_id" />
+          </Key>
+          <Property Name="System_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Character_id" Type="Int32" Nullable="false" />
+          <Property Name="Session_id" Type="Int32" Nullable="false" />
+          <Property Name="Experience_Points" Type="Int32" Nullable="false" />
+          <Property Name="Closing_Situation" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Character" Relationship="Self.FK_Session_Details_ToCharacter" FromRole="Session_Details" ToRole="Characters" />
+          <NavigationProperty Name="Session" Relationship="Self.FK_Session_Details_ToSessions" FromRole="Session_Details" ToRole="Sessions" />
+        </EntityType>
+        <EntityType Name="Session">
+          <Key>
+            <PropertyRef Name="System_id" />
+          </Key>
+          <Property Name="System_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Chronicle_id" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Notes" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Extra_Notes" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Session_Player" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Chronicle" Relationship="Self.FK_Sessions_ToChronicle" FromRole="Sessions" ToRole="Chronicles" />
+          <NavigationProperty Name="Session_Details" Relationship="Self.FK_Session_Details_ToSessions" FromRole="Sessions" ToRole="Session_Details" />
+          <NavigationProperty Name="Player" Relationship="Model.FK_Sessions_ToPlayer" FromRole="Session" ToRole="Player" />
+        </EntityType>
+        <EntityType Name="Story">
+          <Key>
+            <PropertyRef Name="System_id" />
+          </Key>
+          <Property Name="System_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Narrator_id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_Stories_ToUsers" FromRole="Stories" ToRole="AspNetUsers" />
+          <NavigationProperty Name="Characters" Relationship="Self.FK_Stories_ToPlayers" FromRole="Stories" ToRole="Characters" />
+          <NavigationProperty Name="Chronicles" Relationship="Self.FK_Chronicles_ToStories" FromRole="Stories" ToRole="Chronicles" />
+          <NavigationProperty Name="Experience_Points" Relationship="Self.FK_Experience_Points_ToSessions" FromRole="Stories" ToRole="Experience_Points" />
+          <NavigationProperty Name="Players" Relationship="Self.Player_In_Story" FromRole="Stories" ToRole="Players" />
+        </EntityType>
+        <EntityType Name="Experience_Points">
+          <Key>
+            <PropertyRef Name="Story_id" />
+            <PropertyRef Name="Character_id" />
+            <PropertyRef Name="Experience_Point" />
+          </Key>
+          <Property Name="Story_id" Type="Int32" Nullable="false" />
+          <Property Name="Character_id" Type="Int32" Nullable="false" />
+          <Property Name="Experience_Point" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Character" Relationship="Self.FK_Experience_Points_ToCharacters" FromRole="Experience_Points" ToRole="Characters" />
+          <NavigationProperty Name="Story" Relationship="Self.FK_Experience_Points_ToSessions" FromRole="Experience_Points" ToRole="Stories" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Players_ToUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
+          <End Role="Players" Type="Self.Player" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Players">
+              <PropertyRef Name="Narrator_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stories_ToUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
+          <End Role="Stories" Type="Self.Story" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Stories">
+              <PropertyRef Name="Narrator_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Characters_ToPlayers">
+          <End Role="Players" Type="Self.Player" Multiplicity="1" />
+          <End Role="Characters" Type="Self.Character" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Players">
+              <PropertyRef Name="System_Id" />
+            </Principal>
+            <Dependent Role="Characters">
+              <PropertyRef Name="Parent_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Experience_Points_ToCharacters">
+          <End Role="Characters" Type="Self.Character" Multiplicity="1" />
+          <End Role="Experience_Points" Type="Self.Experience_Points" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Characters">
+              <PropertyRef Name="System_id" />
+            </Principal>
+            <Dependent Role="Experience_Points">
+              <PropertyRef Name="Character_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Session_Details_ToCharacter">
+          <End Role="Characters" Type="Self.Character" Multiplicity="1" />
+          <End Role="Session_Details" Type="Self.Session_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Characters">
+              <PropertyRef Name="System_id" />
+            </Principal>
+            <Dependent Role="Session_Details">
+              <PropertyRef Name="Character_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stories_ToPlayers">
+          <End Role="Stories" Type="Self.Story" Multiplicity="1" />
+          <End Role="Characters" Type="Self.Character" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stories">
+              <PropertyRef Name="System_id" />
+            </Principal>
+            <Dependent Role="Characters">
+              <PropertyRef Name="Story_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Chronicles_ToStories">
+          <End Role="Stories" Type="Self.Story" Multiplicity="1" />
+          <End Role="Chronicles" Type="Self.Chronicle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stories">
+              <PropertyRef Name="System_id" />
+            </Principal>
+            <Dependent Role="Chronicles">
+              <PropertyRef Name="Story_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sessions_ToChronicle">
+          <End Role="Chronicles" Type="Self.Chronicle" Multiplicity="1" />
+          <End Role="Sessions" Type="Self.Session" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Chronicles">
+              <PropertyRef Name="System_id" />
+            </Principal>
+            <Dependent Role="Sessions">
+              <PropertyRef Name="Chronicle_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Session_Details_ToSessions">
+          <End Role="Sessions" Type="Self.Session" Multiplicity="1" />
+          <End Role="Session_Details" Type="Self.Session_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sessions">
+              <PropertyRef Name="System_id" />
+            </Principal>
+            <Dependent Role="Session_Details">
+              <PropertyRef Name="Session_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Experience_Points_ToSessions">
+          <End Role="Stories" Type="Self.Story" Multiplicity="1" />
+          <End Role="Experience_Points" Type="Self.Experience_Points" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stories">
+              <PropertyRef Name="System_id" />
+            </Principal>
+            <Dependent Role="Experience_Points">
+              <PropertyRef Name="Story_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
+        </Association>
+        <Association Name="Player_In_Story">
+          <End Role="Players" Type="Self.Player" Multiplicity="*" />
+          <End Role="Stories" Type="Self.Story" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="The_MasqueradeEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+          <EntitySet Name="Characters" EntityType="Self.Character" />
+          <EntitySet Name="Chronicles" EntityType="Self.Chronicle" />
+          <EntitySet Name="Players" EntityType="Self.Player" />
+          <EntitySet Name="Session_Details" EntityType="Self.Session_Details" />
+          <EntitySet Name="Sessions" EntityType="Self.Session" />
+          <EntitySet Name="Stories" EntityType="Self.Story" />
+          <EntitySet Name="Experience_Points" EntityType="Self.Experience_Points" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Players_ToUsers" Association="Self.FK_Players_ToUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Players" EntitySet="Players" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stories_ToUsers" Association="Self.FK_Stories_ToUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Stories" EntitySet="Stories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Characters_ToPlayers" Association="Self.FK_Characters_ToPlayers">
+            <End Role="Players" EntitySet="Players" />
+            <End Role="Characters" EntitySet="Characters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Experience_Points_ToCharacters" Association="Self.FK_Experience_Points_ToCharacters">
+            <End Role="Characters" EntitySet="Characters" />
+            <End Role="Experience_Points" EntitySet="Experience_Points" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Session_Details_ToCharacter" Association="Self.FK_Session_Details_ToCharacter">
+            <End Role="Characters" EntitySet="Characters" />
+            <End Role="Session_Details" EntitySet="Session_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stories_ToPlayers" Association="Self.FK_Stories_ToPlayers">
+            <End Role="Stories" EntitySet="Stories" />
+            <End Role="Characters" EntitySet="Characters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Chronicles_ToStories" Association="Self.FK_Chronicles_ToStories">
+            <End Role="Stories" EntitySet="Stories" />
+            <End Role="Chronicles" EntitySet="Chronicles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sessions_ToChronicle" Association="Self.FK_Sessions_ToChronicle">
+            <End Role="Chronicles" EntitySet="Chronicles" />
+            <End Role="Sessions" EntitySet="Sessions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Session_Details_ToSessions" Association="Self.FK_Session_Details_ToSessions">
+            <End Role="Sessions" EntitySet="Sessions" />
+            <End Role="Session_Details" EntitySet="Session_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Experience_Points_ToSessions" Association="Self.FK_Experience_Points_ToSessions">
+            <End Role="Stories" EntitySet="Stories" />
+            <End Role="Experience_Points" EntitySet="Experience_Points" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <AssociationSet Name="Player_In_Story" Association="Self.Player_In_Story">
+            <End Role="Players" EntitySet="Players" />
+            <End Role="Stories" EntitySet="Stories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sessions_ToPlayer" Association="Model.FK_Sessions_ToPlayer">
+            <End Role="Player" EntitySet="Players" />
+            <End Role="Session" EntitySet="Sessions" />
+          </AssociationSet>
+          <EntitySet Name="Character_Details" EntityType="Model.Character_Details" />
+          <AssociationSet Name="FK_Character_Details_ToCharacter" Association="Model.FK_Character_Details_ToCharacter">
+            <End Role="Character" EntitySet="Characters" />
+            <End Role="Character_Details" EntitySet="Character_Details" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK_Sessions_ToPlayer">
+          <End Type="Model.Player" Role="Player" Multiplicity="1" />
+          <End Type="Model.Session" Role="Session" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Player">
+              <PropertyRef Name="System_Id" />
+            </Principal>
+            <Dependent Role="Session">
+              <PropertyRef Name="Session_Player" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Character_Details">
+          <Key>
+            <PropertyRef Name="System_id" />
+          </Key>
+          <Property Name="System_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Character_id" Type="Int32" Nullable="false" />
+          <Property Name="Section" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Specialization" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MaxValue" Type="Int32" />
+          <Property Name="ActualValue" Type="Int32" />
+          <NavigationProperty Name="Character" Relationship="Model.FK_Character_Details_ToCharacter" FromRole="Character_Details" ToRole="Character" />
+        </EntityType>
+        <Association Name="FK_Character_Details_ToCharacter">
+          <End Type="Model.Character" Role="Character" Multiplicity="1" />
+          <End Type="Model.Character_Details" Role="Character_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Character">
+              <PropertyRef Name="System_id" />
+            </Principal>
+            <Dependent Role="Character_Details">
+              <PropertyRef Name="Character_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="The_MasqueradeEntities">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="Model.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="Model.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="Model.AspNetUserClaim">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="Model.AspNetUserLogin">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="Model.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Characters">
+            <EntityTypeMapping TypeName="Model.Character">
+              <MappingFragment StoreEntitySet="Characters">
+                <ScalarProperty Name="Sire" ColumnName="Sire" />
+                <ScalarProperty Name="Generetion" ColumnName="Generetion" />
+                <ScalarProperty Name="Concept" ColumnName="Concept" />
+                <ScalarProperty Name="Demeanon" ColumnName="Demeanon" />
+                <ScalarProperty Name="Nature" ColumnName="Nature" />
+                <ScalarProperty Name="System_id" ColumnName="System_id" />
+                <ScalarProperty Name="Parent_id" ColumnName="Parent_id" />
+                <ScalarProperty Name="Story_id" ColumnName="Story_id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Alive" ColumnName="Alive" />
+                <ScalarProperty Name="Clan" ColumnName="Clan" />
+                <ScalarProperty Name="Personal_Story" ColumnName="Personal_Story" />
+                <ScalarProperty Name="Experience_Points" ColumnName="Experience_Points" />
+				<ScalarProperty Name="EP_Available" ColumnName="EP_Available" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Chronicles">
+            <EntityTypeMapping TypeName="Model.Chronicle">
+              <MappingFragment StoreEntitySet="Chronicles">
+                <ScalarProperty Name="System_id" ColumnName="System_id" />
+                <ScalarProperty Name="Story_id" ColumnName="Story_id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Players">
+            <EntityTypeMapping TypeName="Model.Player">
+              <MappingFragment StoreEntitySet="Players">
+                <ScalarProperty Name="System_Id" ColumnName="System_Id" />
+                <ScalarProperty Name="Narrator_id" ColumnName="Narrator_id" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Full_Name" ColumnName="Full_Name" />
+                <ScalarProperty Name="eMail" ColumnName="eMail" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Session_Details">
+            <EntityTypeMapping TypeName="Model.Session_Details">
+              <MappingFragment StoreEntitySet="Session_Details">
+                <ScalarProperty Name="System_id" ColumnName="System_id" />
+                <ScalarProperty Name="Character_id" ColumnName="Character_id" />
+                <ScalarProperty Name="Session_id" ColumnName="Session_id" />
+                <ScalarProperty Name="Experience_Points" ColumnName="Experience_Points" />
+                <ScalarProperty Name="Closing_Situation" ColumnName="Closing_Situation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sessions">
+            <EntityTypeMapping TypeName="Model.Session">
+              <MappingFragment StoreEntitySet="Sessions">
+                <ScalarProperty Name="System_id" ColumnName="System_id" />
+                <ScalarProperty Name="Chronicle_id" ColumnName="Chronicle_id" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Extra_Notes" ColumnName="Extra_Notes" />
+                <ScalarProperty Name="Session_Player" ColumnName="Session_Player" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stories">
+            <EntityTypeMapping TypeName="Model.Story">
+              <MappingFragment StoreEntitySet="Stories">
+                <ScalarProperty Name="System_id" ColumnName="System_id" />
+                <ScalarProperty Name="Narrator_id" ColumnName="Narrator_id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Experience_Points">
+            <EntityTypeMapping TypeName="Model.Experience_Points">
+              <MappingFragment StoreEntitySet="Experience_Points">
+                <ScalarProperty Name="Story_id" ColumnName="Story_id" />
+                <ScalarProperty Name="Character_id" ColumnName="Character_id" />
+                <ScalarProperty Name="Experience_Point" ColumnName="Experience_Point" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="Model.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Player_In_Story" TypeName="Model.Player_In_Story" StoreEntitySet="Player_In_Story">
+            <EndProperty Name="Players">
+              <ScalarProperty Name="System_Id" ColumnName="Player_id" />
+            </EndProperty>
+            <EndProperty Name="Stories">
+              <ScalarProperty Name="System_id" ColumnName="Story_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="Character_Details">
+            <EntityTypeMapping TypeName="Model.Character_Details">
+              <MappingFragment StoreEntitySet="Character_Details">
+                <ScalarProperty Name="ActualValue" ColumnName="ActualValue" />
+                <ScalarProperty Name="MaxValue" ColumnName="MaxValue" />
+                <ScalarProperty Name="Specialization" ColumnName="Specialization" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Section" ColumnName="Section" />
+                <ScalarProperty Name="Character_id" ColumnName="Character_id" />
+                <ScalarProperty Name="System_id" ColumnName="System_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

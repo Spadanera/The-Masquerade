@@ -1,0 +1,108 @@
+﻿@model The_Masquerade.Models.NarratorModel
+
+@{
+    ViewBag.Title = "Story-Teller";
+}
+
+@*<h2>Index</h2>*@
+<div class="inner-content">
+    <h2>Stories</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create", "Stories", null, null)
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Actions
+            </th>
+        </tr>
+
+        @foreach (var item in Model.Stories)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink((Html.DisplayFor(modelItem => item.Name)).ToString(), "Index", "Chronicles", new { id = item.System_id }, null)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "Stories", new { id = item.System_id }, null) |
+                    @Html.ActionLink("Details", "Details", "Stories", new { id = item.System_id }, null) |
+                    @Html.ActionLink("Delete", "Delete", "Stories", new { id = item.System_id }, null)
+                </td>
+            </tr>
+        }
+
+    </table>
+
+    <h2 class="second">Players & NPC Groups</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create", "Players", null, null)
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                UserName
+            </th>
+            <th class="nophone">
+                Full Name
+            </th>
+            <th class="nophone">
+                eMail
+            </th>
+            <th>
+                Status
+            </th>
+            <th>
+                Type
+            </th>
+            <th>
+                Actions
+            </th>
+        </tr>
+
+        @foreach (var item in Model.Players)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(@Html.DisplayFor(modelItem => item.UserName).ToString(), "Index", "Characters", new { id = item.System_Id }, null)
+                </td>
+                <td class="nophone">
+                    @Html.DisplayFor(modelItem => item.Full_Name)
+                </td>
+                <td class="nophone">
+                    @Html.DisplayFor(modelItem => item.eMail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "Players", new { id = item.System_Id }, null) |
+                    @Html.ActionLink("Details", "Details", "Players", new { id = item.System_Id }, null) |
+                    @Html.ActionLink("Delete", "Delete", "Players", new { id = item.System_Id }, null)
+                    @if (item.Type == "Player")
+                    {
+                        <span> | </span>
+                        @Html.ActionLink("Invitation", "Invitation", "UserRegister", new { id = item.System_Id }, null)
+                    }
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+@*<aside class="index-aside">
+    @Html.Partial("_ActionAside")
+</aside>*@

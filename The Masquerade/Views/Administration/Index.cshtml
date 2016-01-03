@@ -1,0 +1,74 @@
+﻿@model The_Masquerade.Models.AdministrationModel
+
+@{
+    ViewBag.Title = "Administration";
+}
+<div class="inner-content">
+    @*<h2>Index</h2>*@
+    <h2>Roles</h2>
+    <p>
+        @Html.ActionLink("Create New", "Create", "AspNetRoles", null, null)
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Actions
+            </th>
+        </tr>
+
+        @foreach (var item in Model.Roles)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "AspNetRoles", new { id = item.Id }, null) |
+                    @Html.ActionLink("Details", "Details", "AspNetRoles", new { id = item.Id }, null) |
+                    @Html.ActionLink("Delete", "Delete", "AspNetRoles", new { id = item.Id }, null)
+                </td>
+            </tr>
+        }
+    </table>
+
+    <h2 class="second">Users</h2>
+    <p>
+        @Html.ActionLink("Create New", "Create", "AspNetUsers", null, null)
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                UserName
+            </th>
+            <th class="nophone">
+                Email
+            </th>
+            <th>
+                Actions
+            </th>
+        </tr>
+
+        @foreach (var item in Model.Users)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td class="nophone">
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "AspNetUsers", new { id = item.Id }, null) |
+                    @Html.ActionLink("Details", "Details", "AspNetUsers", new { id = item.Id }, null) |
+                    @Html.ActionLink("Delete", "Delete", "AspNetUsers", new { id = item.Id }, null)
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+@*<aside class="index-aside">
+    @Html.Partial("_ActionAside")
+</aside>*@

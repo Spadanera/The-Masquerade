@@ -1,0 +1,50 @@
+﻿@model IEnumerable<The_Masquerade.Models.Session>
+
+@{
+    ViewBag.Title = "Sessions";
+}
+
+@*<h2>@Html.ActionLink("Index", "Narrator", "Administration") > @Html.ActionLink((string)(ViewBag.Story), "Index", "Chronicles", new { id = ViewBag.Story_id }, null) > @ViewBag.Chronicle</h2>*@
+<h2>@ViewBag.Chronicle's Sessions</h2>
+<p>
+    @Html.ActionLink("Create New", "Create", new { id = ViewBag.Chronicle_id })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Notes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Session_Player)
+        </th>
+        <th>
+            Actions
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Notes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Player.UserName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.System_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.System_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.System_id })
+        </td>
+    </tr>
+}
+
+</table>
+<p>
+    @Html.ActionLink("Back to chronicles", "Index", "Chronicles", new { id = ViewBag.Story_id }, null)
+</p>

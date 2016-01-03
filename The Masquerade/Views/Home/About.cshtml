@@ -1,0 +1,83 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+@*<h2>@ViewBag.Title</h2>
+*@
+<link rel="stylesheet" href="~/Content/Home.css" />
+<style>
+    section > article {
+        text-align: justify;
+        padding-left: 5%;
+        padding-right: 5%;
+        padding-bottom: 10px;
+    }
+</style>
+<div id="intro-conteiner">
+    <h2>How to join The Masquerade</h2>
+    <section>
+        <article>
+            Hi guys!
+            <br />
+            <br />
+            I'm Nicola Zirilli, an Italian .NET Developer and great fan of Vampire The Masquerade. I developed this web site to help the story-teller
+            and the players to manage chronicles and characters.<br />
+            The system is very simple, and now you can see it.
+        </article>
+        <article>
+            First of all you have to register to the web site. Currently is available the local user registration method. In the future you will register
+            by one of your external account.<br />
+            After the registration and the log in you will find the entry "Story-Teller" in the main menu. It allow you to access the core of the site.
+            In the main page you can create and manage stories, players and NPC groups (Not Playing Character).<br />
+            <u>A story is a container of chronicles in the same environment and with the same characters</u>. Every players and NPC groups can take part to several stories.
+            In fact each player and NPC group may have many characters. Instead each character is associated with only one story.
+        </article>
+        <article>
+            Now you can create your chronicles and see all the alive characters.<br />
+            Creating stories and chronicles you can see that there's no so many text field for your annotations.
+            This site is focused on characters and sessions, it isn't a web notepad ;).<br />
+            The last step is creating the session. In the session you can indicate the date, the main note (I suggest using this field for short annotations because
+            it will be reported on the summary table), an extra notes where you could be more verbose and the player that you think is the best of the session.<br />
+            Moreover you will find a section for each characters alive belonging to a player associated to the story. About it you can annotate the
+            experience points earned
+            in this session (they will be automatically added to the EP total and available pool of the character, same for editing and deleting existing sessions)
+            and the closing situation (it will be reported in the character history page).
+        </article>
+        <article>
+            Don't be afraid to have too many work to do, <u>the characters associated with a player can be created and edited by the player himself!</u><br />
+            Once created a player, you can invite him to join your stories. After the invitation, the player will receive by email a link that allow
+            him to register to the web site as a player, automatically connected to the stories that you decide to associate to him.
+        </article>
+        <article>
+            About the character sheet I reproduce the Vampire The Masquerade official sheet. Below some tips:
+            <ul>
+                <li>When you save the character will be set the blood pool and the available characteristics point based on the generation</li>
+                <li>
+                    When you add a disciplines, backgrounds, merits and flaws you can delete them until you save. After that it will no longer
+                    be allowed
+                </li>
+                <li>To set a characteristic to zero, you have to double click on one of the radio button (allowed only in desktop mode)</li>
+                <li>
+                    To jump from one character to another during the session you can use the "Recent Function". In the bottom right corner
+                    you will find a tab where you can reach the 6 last characters that you have consulted
+                </li>
+            </ul>
+        </article>
+        <article>
+            Which feature will come next:
+            <ul>
+                <li>Multilanguage</li>
+                <li>External account register method</li>
+                <li>Sharing Players through Story-Tellers</li>
+                <li>Dark Age and Victorian Age sheets</li>
+                <li>Manage use of blood during fights</li>
+                <li>Max available points for characteristics over 6</li>
+                <li>Different kind of damage (bashing, letal, aggravated)</li>
+                <li>Extra characters info (i.e. rituals, ghouls, equipments...)</li>
+                <li>...look forward to your suggestions (<a href="mailto:marketing@TheMasquerade.net">marketing@@TheMasuquerade.net</a>)</li>
+            </ul>
+        </article>
+        <article>
+            Enjoy!
+        </article>
+    </section>
+</div>

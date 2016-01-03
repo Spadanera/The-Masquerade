@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="126faf133d5e4806ad75125a9774cfcf" Name="Diagram1" ZoomLevel="96">
+        <EntityTypeShape EntityType="Model.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.AspNetRole" Width="1.5" PointX="0.75" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.AspNetUser" Width="1.5" PointX="3" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Character" Width="1.5" PointX="7.5" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Chronicle" Width="1.5" PointX="9.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Player" Width="1.5" PointX="5.25" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Session_Details" Width="1.5" PointX="14.25" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Session" Width="1.5" PointX="12" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Story" Width="1.5" PointX="7.5" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Experience_Points" Width="1.5" PointX="9.75" PointY="9" IsExpanded="true" />
+        <AssociationConnector Association="Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Players_ToUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Stories_ToUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Characters_ToPlayers" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Experience_Points_ToCharacters" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Session_Details_ToCharacter" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Stories_ToPlayers" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Chronicles_ToStories" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Sessions_ToChronicle" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Session_Details_ToSessions" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Experience_Points_ToSessions" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.AspNetUserRoles" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.Player_In_Story" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Sessions_ToPlayer" />
+        <EntityTypeShape EntityType="Model.Character_Details" Width="1.5" PointX="9.75" PointY="12.125" />
+        <AssociationConnector Association="Model.FK_Character_Details_ToCharacter" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

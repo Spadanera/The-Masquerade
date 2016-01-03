@@ -1,0 +1,61 @@
+﻿@model IEnumerable<The_Masquerade.Models.Character>
+
+@{
+    ViewBag.Title = "Player";
+}
+
+@*<h2>Player</h2>*@
+
+@foreach (var s in (List<string>)(ViewBag.Stories))
+{
+    <h2>@s</h2>
+    
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Alive)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Clan)
+            </th>
+            <th class="nophone">
+                @Html.DisplayNameFor(model => model.Experience_Points)
+            </th>
+            <th>Action</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            if (item.Story.Name == s)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Alive)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Clan)
+                    </td>
+                    <td class="nophone">
+                        @Html.DisplayFor(modelItem => item.Experience_Points)
+                    </td>
+                    <td>
+                        @Html.ActionLink("History", "Hystory", "Characters", new { id = item.System_id }, null) |
+                        @Html.ActionLink("Edit", "Edit", "Characters", new { id = item.System_id }, null) |
+                        @Html.ActionLink("Details", "Details", "Characters", new { id = item.System_id }, null) |
+                        @Html.ActionLink("Delete", "Delete", "Characters", new { id = item.System_id }, null)
+                    </td>
+                </tr>
+            }
+        }
+
+    </table>
+}
+<p>
+    @Html.ActionLink("Create New", "Create", "Characters", new { id = ViewBag.Player_id }, null)
+</p>

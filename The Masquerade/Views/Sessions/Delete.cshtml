@@ -1,0 +1,63 @@
+﻿@model The_Masquerade.Models.Session
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Extra_Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Extra_Notes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Session_Player)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Session_Player)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Chronicle.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Chronicle.Name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index", new { id = ViewBag.Chronicle_id })
+        </div>
+    }
+</div>

@@ -1,0 +1,113 @@
+﻿@using The_Masquerade.Models
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    @*<script>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_EN/sdk.js#xfbml=1&version=v2.3";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+        </script>*@
+    <script type="text/javascript" src="~/Scripts/View/Character.js"></script>
+    
+</head>
+<body>
+    @*<div id="fb-root"></div>*@
+
+    <div id="navbar-main" class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="extra-left">
+                @*<img class="resize" src="~/Content/Images/banner-outer-left.jpg" />*@
+            </div>
+            @*<div class="fb-share-button" data-href="http://spadanera-001-site1.smarterasp.net/" data-layout="icon"></div>*@
+            <div class="navbar-header">
+                @*<img id="banner-inner-left" class="resize" src="~/Content/Images/banner-inner-left.jpg" />*@
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @*@Html.ActionLink("THE MASQUERADE", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
+                <a href="~/"><img id="logo" src="~/Content/Images/banner-alt.jpg" class="logo" /></a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-bottom navbar-bottom-left">
+                    @if (Request.IsAuthenticated && User.IsInRole("Narrator"))
+                    {
+                        <li>@Html.ActionLink("Story-Teller", "Narrator", "Administration")</li>
+                    }
+                    @if (Request.IsAuthenticated && User.IsInRole("Administrator"))
+                    {
+                        <li>@Html.ActionLink("Administration", "Index", "Administration")</li>
+                    }
+                    @if (Request.IsAuthenticated && User.IsInRole("Player"))
+                    {
+                        <li>@Html.ActionLink("Player Manager", "Player", "Administration")</li>
+                    }
+                </ul>
+                <ul class="nav navbar-nav navbar-bottom navbar-bottom-right">
+                    @*<li>@Html.ActionLink("Home", "Index", "Home")</li>*@
+                    <li>@Html.ActionLink("Guide ", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                </ul>
+                <div class="user-manage">
+                    @Html.Partial("_LoginPartial")
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        <div id="main-content">
+            @RenderBody()
+        </div>
+        <footer>
+            <hr />
+            <p>Powered by <a href="https://it.linkedin.com/pub/nicola-zirilli/41/aa/99?domainCountryName=Italia&csrfToken=ajax%3A8447693584493525322&domainCountryCode=it">Nicola Zirilli</a> - Beta Version</p>
+            @if (User.Identity.IsAuthenticated && User.IsInRole("Narrator"))
+            {
+                <div id="Items">
+                    <div id="RecentItem">
+                        @Html.Partial("_RecentAside")
+                    </div>
+                    @*<div id="ActionItem">
+                        @Html.Partial("_ActionAside")
+                    </div>*@
+                </div>
+            }
+        </footer>
+    </div>
+    @*<div id="footer-conteiner">
+
+
+        </div>*@
+    @*
+        @if (User.Identity.IsAuthenticated)
+        {
+            @Html.Action("Index", "TreeMenu")
+        }
+    *@
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+    @section Scripts {
+    
+    }
+
+    <script type="text/javascript">
+        //scrollResize();
+    </script>
+
+</body>
+</html>

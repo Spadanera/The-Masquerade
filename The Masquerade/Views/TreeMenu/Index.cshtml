@@ -1,0 +1,21 @@
+﻿@model The_Masquerade.Models.AspNetUser
+<ul>
+    @foreach (var story in Model.Stories)
+    {
+        if (story.AspNetUser.Id == Model.Id)
+        {
+            <li>
+                @story.Name
+                <ul>
+                    @foreach (var chronicle in story.Chronicles)
+                    {
+                        <li>@chronicle.Name</li>
+                    }
+                </ul>
+            </li>
+        }
+    }
+</ul>
+
+
+

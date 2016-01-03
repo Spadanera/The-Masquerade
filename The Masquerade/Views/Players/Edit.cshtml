@@ -1,0 +1,95 @@
+﻿@model The_Masquerade.Models.Views.PlayersModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+<script type="text/javascript" src="~/Scripts/View/Player.js"></script>
+<h2>Edit: @Model.Player.UserName</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Player.System_Id)
+        @Html.HiddenFor(model => model.Player.Narrator_id)
+        <div class="div-center">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Player.Type, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.Player.Type, new List<SelectListItem> {
+                    new SelectListItem { Text = "Player", Value = "Player" },
+                    new SelectListItem { Text = "NPC Group", Value = "NPC Group" }}, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Player.Type, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Player.Stories, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="selectStory">
+                        @Html.CheckBoxListFor(model => model.SelectedStories,
+                                  model => model.AllStories,
+                                  entity => entity.System_id,
+                                  entity => entity.Name,
+                                  model => model.UserStories,
+                                  MvcCheckBoxList.Model.Position.Vertical)
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Player.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Player.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Player.UserName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Player.Full_Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Player.Full_Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Player.Full_Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Player.eMail, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Player.eMail, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Player.eMail, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Player.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.Player.Status, new List<SelectListItem> {
+                new SelectListItem { Text = "Active", Value = "Active" },
+                new SelectListItem { Text = "Not active", Value = "Not Active"}}, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Player.Status, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to Index", "Narrator", "Administration")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        disableEmail($("#Player_Type"));
+    </script>
+}

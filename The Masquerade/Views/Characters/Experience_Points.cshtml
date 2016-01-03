@@ -1,0 +1,44 @@
+﻿@model List<The_Masquerade.Models.Character>
+
+@{
+    ViewBag.Title = "Experience_Points";
+}
+
+<h2>Experience Points</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            User Name
+        </th>
+        <th>
+            Character Name
+        </th>
+        <th>
+            Clan
+        </th>
+        <th>
+            Experience Points
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Player.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Clan)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Experience_Points)
+        </td>
+    </tr>
+}
+</table>
+<p>
+    @Html.ActionLink("Back to Chronicles", "Index", "Chronicles", new { id = ViewBag.Story_id }, null)
+</p>

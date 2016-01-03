@@ -1,0 +1,90 @@
+﻿@model List<The_Masquerade.Models.Views.HystoryModel>
+
+@{
+    ViewBag.Title = "Hystory";
+    bool present = false;
+    bool first = true;
+    var Name = "";
+}
+
+<h2 id="character"></h2>
+@foreach (var hystory in Model)
+{
+    if (hystory.Sessions.Count > 0)
+    {
+        if (first)
+        {
+            <h3>@hystory.Chronicle.Name's history</h3>
+            first = false;
+        }
+        else
+        {
+            <h3 class="second">@hystory.Chronicle.Name's history</h3>
+        }
+        <table class="table">
+            <tr>
+                <th>
+                    Date
+                </th>
+                <th>
+                    Experience Points
+                </th>
+                <th>
+                    Closing Situation
+                </th>
+                <th>
+                    Session's Player
+                </th>
+            </tr>
+
+            @foreach (var item in hystory.Sessions)
+            {
+                if (!present)
+                {
+                    present = true;
+                    Name = item.Character.Name;
+                }
+                <tr>
+                    <th>
+                        @Html.DisplayFor(model => item.Session.Date)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Experience_Points)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Closing_Situation)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Session.Player.UserName)
+                    </td>
+                </tr>
+            }
+
+        </table>
+    }
+}
+
+@if (!present)
+{
+    <p>
+        This character did't joined any session.
+    </p>
+}
+else
+{
+    @section Scripts {
+        <script>
+            $("#character").html("@Name");
+        </script>
+    }
+}
+<div>
+    @if (Request.IsAuthenticated && User.IsInRole("Narrator"))
+    {
+        @Html.ActionLink("Back to List", "Index", "Chronicles", new { id = ViewBag.Story_id }, null);
+    }
+    @if (Request.IsAuthenticated && User.IsInRole("Player"))
+    {
+        @Html.ActionLink("Back to Index", "Player", "Administration");
+    }
+</div>

@@ -1,0 +1,70 @@
+﻿@model The_Masquerade.Models.UserRegisterModels
+
+@{
+    ViewBag.Title = "Invitation";
+}
+<script type="text/javascript">
+    function Invitation() {
+        $.ajax({
+            url: "http://" + window.location.host + "/UserRegister/Invitation/40 ",
+            type: "POST",
+            data: { id: @Model.Player.System_Id },
+            success: function(result) {
+                $("loading").css("display", "none");
+                $("#thankYou").css("display", "block").html(result);
+            }
+        });
+    }
+</script>
+<h2>Invite @Model.Player.UserName to join your party</h2>
+<div id="InvitationForm">
+    <div class="div-center">
+        
+            @Html.AntiForgeryToken()
+            <fieldset>
+                <div>
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(m => m.Player.Full_Name)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(m => m.Player.Full_Name)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(m => m.Player.eMail)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(m => m.Player.eMail)
+                        </dd>
+                    </dl>
+                    @Html.HiddenFor(m => m.Player.System_Id)
+                    @Html.HiddenFor(m => m.Player.Narrator_id)
+                    @Html.HiddenFor(m => m.Player.eMail)
+                    @Html.HiddenFor(m => m.Player.Full_Name)
+                    @Html.HiddenFor(m => m.Player.Status)
+                    @Html.HiddenFor(m => m.Player.Type)
+                    @Html.HiddenFor(m => m.Player.UserName)
+                    @Html.HiddenFor(m => m.Player.AspNetUser.UserName)
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input onclick="Invitation()" id="invitation" type="submit" value="Send Invitation" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        
+    </div>
+</div>
+<div id="loading" style="display: none;">
+    Sending invitation...
+</div>
+<div id="thankYou" style="display: none"></div>
+<div>
+    @Html.ActionLink("Back to Index", "Narrator", "Administration")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
