@@ -10,6 +10,15 @@ namespace The_Masquerade.Controllers
     {
         public ActionResult Index()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                if (User.IsInRole("Narrator"))
+                    return RedirectToAction("Narrator", "Administration");
+                else if (User.IsInRole("Player"))
+                    return RedirectToAction("Player", "Administration");
+                else
+                    return RedirectToAction("Index", "Administration");
+            }
             return View();
         }
 
